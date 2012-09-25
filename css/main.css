@@ -92,13 +92,87 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+html, body {
+	height:100%;
+}
 
 
+body {
+	font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
+	font-size: 13px;
+	
+	background: #efefef;
+}
 
+/*--------------------------------------------------------------------MAIN HEADER-------------------------------------------------*/
 
+#siteHeader {
+	width:100%;
+	height: ;
 
+	height: 100px;
+}
 
+/*--------------------------------------------------------------------MAIN NAVIGATION-------------------------------------------------*/
+#siteNav  {
+	height:auto;
+	width:auto;
+	margin: 0px 50px 0px 50px;
+	background: #252525;
+	border: 1px solid #efefef;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	overflow:hidden;
+}
+#siteNav ul {
+	padding:0 0;
+	width:100%;
+	overflow: hidden;
+	margin: 0px 14% 0px 14%;
+	background: #252525;
+}
 
+#siteNav li {
+	background: #252525;
+	float: left;
+	height: 60px;
+	overflow: hidden;
+	width:8%;
+    -webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-ms-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+}
+
+#siteNav li:hover {
+	background: #424242;
+}
+
+#siteNav a {
+	display: block;
+	padding: 15px 0;
+	text-align:center;
+	color: white;
+	text-decoration: none;
+    position: relative;
+    top: 0;
+	
+    line-height: 30px;
+    display: block;
+	
+	-webkit-transition: margin 0.3s linear, top 0s 0.2s linear;
+	-moz-transition: margin 0.3s linear, top 0s 0.2s linear;
+	-ms-transition: margin 0.3s linear, top 0s 0.2s linear;
+	-o-transition: margin 0.3s linear, top 0s 0.2s linear;
+	transition: margin 0.3s linear, top 0s 0.2s linear;
+}
+
+#siteNav li:hover a {
+    margin-top: 60px;
+	top: -60px;
+}
 
 
 
