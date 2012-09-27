@@ -22,24 +22,97 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-		<header id="siteHeader">
-        
-        
-        </header>
+        <section id="siteBody">
+        	<a name="TopOfPage" id="TopOfPage"></a> <!--name is only for older browsers-->
+            <header id="siteHeader">
+            	
+                <section id="siteLogo">
+                </section>
+                <aside id="siteSearch">
+                	<div class="container">
+                        <p class="s"><input name="search" id="search" type="search" placeholder="Search"></p>
+                    </div>
+                </aside>
+                
+                <div id="siteLogin">
+					<div id="menu">
+                        <form>
+                           <input type="text" name="firstname" required placeholder="Username"/>
+                           <input type="text" name="lastname" required placeholder="Password"/>
+                        </form>
+                    </div>
+                    
+                    <div id="bar">
+                        <a href="#"><h1>LOGIN</h1></a>
+                    </div>
+                </div>
+                
+            </header>
+    
+            <nav id="siteNav">
+                <ul class="menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Events</a>
+                    	<ul class="submenu venitian">
+                            <li>sub-One</li>
+                            <li>sub-Two</li>
+                            <li>sub-Three</li>
+                            <li>sub-Four</li>
+                            <li>sub-Five</li>
+                            <li>sub-Six</li>
+                            <li>sub-Seven</li>
+	                    </ul>
+                    </li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <section id="contentWrapper">
 
-        <nav id="siteNav">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Events</a></li>
-                <li><a href="#">Resources</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="#">Contact</a></li>
-			</ul>
-        </nav>
+            </section>
+            <section id="noOverlap">
+            
+            </section>
+            
+        </section>
+        
+        <footer id="siteFooter">
+        
+        	<section id="daiictFooter">
+            	<a href="#"><h1>DhiruBhai Ambani Institute of <br>Information & Communication Technology</h1></a>
+            </section>
+
+        	<section id="ehcFooter">
+            </section>
+			
+            <section id="goTop">
+            	<a href="#TopOfPage"><span title="Go to Top">▲</span></a>
+            </section>
+
+		
+            <section id="shareUs">
+            	<div class="container">
+                    <div class="cell">
+                        <div class="share-wrapper below">
+                            <div class="rc10 share-action icon-share"></div>
+                            <div class="share-container rc10 ">
+                                <a class="share-btn tl icon-google-plus" href='#'></a>    
+                                <a class="share-btn tr icon-twitter" href='#'></a>    
+                                <a class="share-btn br icon-facebook" href='#'></a>    
+                                <a class="share-btn bl icon-pinterest" href='#'></a>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </footer>
        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script> -->
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
