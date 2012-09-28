@@ -28,24 +28,22 @@
             	
                 <section id="siteLogo">
                 </section>
-                <aside id="siteSearch">
-                	<div class="container">
-                        <p class="s"><input name="search" id="search" type="search" placeholder="Search"></p>
-                    </div>
-                </aside>
                 
-                <div id="siteLogin">
-					<div id="menu">
-                        <form>
-                           <input type="text" name="firstname" required placeholder="Username"/>
-                           <input type="text" name="lastname" required placeholder="Password"/>
-                        </form>
-                    </div>
-                    
-                    <div id="bar">
-                        <a href="#"><h1>LOGIN</h1></a>
-                    </div>
+                
+                <div id="siteLogin"></div>
+                <div id="LoginMenu">
+                    <form>
+                       <input type="text" name="firstname" required placeholder="Username"/>
+                       <input type="text" name="lastname" required placeholder="Password"/>
+                       <div id="loginButton">
+                           <a class="button next" href="javascript:void(0)">Submit</a>
+                       </div>
+                    </form>
+                </div>    
+                <div id="bar">
+                    <a href="#"><h1>LOGIN</h1></a>
                 </div>
+                
                 
             </header>
     
@@ -54,15 +52,7 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Events</a>
-                    	<ul class="submenu venitian">
-                            <li>sub-One</li>
-                            <li>sub-Two</li>
-                            <li>sub-Three</li>
-                            <li>sub-Four</li>
-                            <li>sub-Five</li>
-                            <li>sub-Six</li>
-                            <li>sub-Seven</li>
-	                    </ul>
+                    	
                     </li>
                     <li><a href="#">Resources</a></li>
                     <li><a href="#">Gallery</a></li>
@@ -71,6 +61,12 @@
                     <li><a href="#">Team</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
+                
+                <aside id="siteSearch">
+                	<div class="container">
+                        <p class="s"><input name="search" id="search" type="search" placeholder="Search"></p>
+                    </div>
+                </aside>
             </nav>
             
             <section id="contentWrapper">
@@ -89,6 +85,8 @@
             </section>
 
         	<section id="ehcFooter">
+	         	<a href="#"><h1>Electronic Hobby Club</h1></a><br>
+                <h3>© EHC@DA-IICT</h3>
             </section>
 			
             <section id="goTop">
