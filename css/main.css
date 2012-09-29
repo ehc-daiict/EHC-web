@@ -185,6 +185,8 @@ body {
 #bar a {
 	text-decoration: none;
 	color: #2e2e2e;
+	-webkit-box-shadow:1px 1px 2px #000 inset;
+	box-shadow:1px 1px 2px #000 inset;
 }
 
 #LoginMenu {
@@ -208,6 +210,12 @@ body {
 	position:absolute;
 	top:0;
 	right:0;
+}
+#bar a:hover {
+	text-shadow:0 1px 1px #999;
+}
+#bar:active {
+	-webkit-box-shadow: 0 0 2px #000;
 }
 
 #bar h1 {

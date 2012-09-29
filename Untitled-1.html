@@ -3,241 +3,187 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Menu Effects</title>
-	<link rel="stylesheet" href="http://louisremi.github.com/menu-effects/css/style.css" />
     <style>
-		
-.menu, .menu ul {
-  list-style: none;
-  padding: 0;
+		#contentWrapper {
+	width:90%;
+	margin:0 5%;
+	clear:both;
+	overflow:auto;
+	background-color:#99FFCC;
+}
+/*__________________________________________COMING EVENTS_________________________________________*/
+@import: url(http://fonts.googleapis.com/css?family=Enriqueta:700);
+#contentWrapper #comingEvents{
+	width:25%;
+	height:auto;
+	float:left;
+	background-color:;
+	color: #fff;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+	
 }
 
-.menu ul {
-  margin: 0;
+#comingEvents ul {
+    list-style: none;
+    width: 84%;
+    margin: 0 auto;
+    background: rgba(0,0,0,0.15);
+    padding:8%;
+    /*border-radius*/
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
-.menu > li {
-  position: relative;
-  display: inline-block;
-  outline: 0;
+#comingEvents h2 {
+	font-size: 18px;
+	color: #587b83;
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.5);
+	background: rgba(255,255,255,0.2);
+	border-radius: 5px;
+	padding: 10px 15px;
+	margin: 0;
+}
+#comingEvents ul li{
+	margin:10px 0;
+}
+#comingEvents ul li span.bullet {
+    border-color: transparent transparent transparent #587b83;
+    border-style: dotted;
+    /* 'dotted' or 'dashed' is better than'solid' for triangles, try to change 'dotted' -> 'solid' see the ugliest triangle ever !*/
+    border-width: 5px;
+    display: inline-block;
+    height: 0;
+    width: 0;
+	margin-left: 10px;
+	margin-top: -5px;
 }
 
-.submenu {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  z-index: 0;
-  overflow: hidden;
-  max-height: 0;
-  /* The transition-delay prevents the menu to disappear before the transition is run backward
-   * It's ~= length of the animation (.6s) + highest item transition delay (466ms) */
-  -webkit-transition: max-height 1ms linear 1s;
-     -moz-transition: max-height 1ms linear 1s;
-  /* A .submenu should be only revealed when hovering the .menu */
-  pointer-events: none;
+#comingEvents ul li div {
+    height:;
+    opacity:;
+	display:none;
+    margin-left: 8px;
+
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
-.menu > li:hover .submenu, .menu > li:focus .submenu {
-  pointer-events: auto;
-  z-index: 10;
-  max-height: 2000px;
-  -webkit-transition: none;
-     -moz-transition: none;
+#comingEvents ul li div {
+	font-size: 12px;
 }
 
-/* Progressive Anim
- * ==================================================================
- * This is a lot of redundant code but the result is worth it
- * This should be edited for menus with more or much less than 8 items 
- */
+/*#comingEvents ul li:last-child:hover div { height: 150px }*/
 
- /* forward */
-.menu > li:hover .submenu li:nth-child(1) {
-  -webkit-transition-delay: 0s;
-     -moz-transition-delay: 0s;
-      -ms-transition-delay: 0s;
-       -o-transition-delay: 0s;
-          transition-delay: 0s;
+#comingEvents ul li:hover div {
+    opacity:;
+    height:;
+	display:list-item;
 }
 
-.menu > li:hover .submenu li:nth-child(2) {
-  -webkit-transition-delay: 66ms;
-     -moz-transition-delay: 66ms;
-      -ms-transition-delay: 66ms;
-       -o-transition-delay: 66ms;
-          transition-delay: 66ms;
+#comingEvents ul li.dropdown:hover span.bullet {
+    /*transform*/
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
-.menu > li:hover .submenu li:nth-child(3) {
-  -webkit-transition-delay: 133ms;
-     -moz-transition-delay: 133ms;
-      -ms-transition-delay: 133ms;
-       -o-transition-delay: 133ms;
-          transition-delay: 133ms;
+#comingEvents fieldset {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    display: inline;
 }
 
-.menu > li:hover .submenu li:nth-child(4) {
-  -webkit-transition-delay: 200ms;
-     -moz-transition-delay: 200ms;
-      -ms-transition-delay: 200ms;
-       -o-transition-delay: 200ms;
-          transition-delay: 200ms;
+#comingEvents input[type="text"] {
+    width: 50px;
+    background: #fff;
+    border: 1px solid  rgba(0, 0, 0, .2);
+    padding: 2px;
 }
 
-.menu > li:hover .submenu li:nth-child(5) {
-  -webkit-transition-delay: 266ms;
-     -moz-transition-delay: 266ms;
-      -ms-transition-delay: 266ms;
-       -o-transition-delay: 266ms;
-          transition-delay: 266ms;
+#comingEvents input[type=text]:focus {
+    outline: none;
+    border-color: #000;
+    color: #F00;
+    font-weight: bold;
 }
 
-.menu > li:hover .submenu li:nth-child(6) {
-  -webkit-transition-delay: 333ms;
-     -moz-transition-delay: 333ms;
-      -ms-transition-delay: 333ms;
-       -o-transition-delay: 333ms;
-          transition-delay: 333ms;
+#comingEvents input[type="submit"] {
+    width: 50px;
+    background: #F00;
+    border: 1px solid #F00;
+    /*border-radius*/
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #FFF;
+    padding: 4px;
+    margin-left: 5px;
+    /*box-shadow*/
+    -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: inset 0px 0px 15px 0px rgba(0, 0, 0, 0.7);
 }
 
-.menu > li:hover .submenu li:nth-child(7) {
-  -webkit-transition-delay: 400ms;
-     -moz-transition-delay: 400ms;
-      -ms-transition-delay: 400ms;
-       -o-transition-delay: 400ms;
-          transition-delay: 400ms;
+#comingEvents input[type=submit]:hover { border: 1px solid #000 }
+
+/*_________________________________________________________RECENT BLOG_______________________________________________*/
+#contentWrapper #recentBlog{
+	width:75%;
+	height:100px;
+	float:left;
+	background-color:#c00;
 }
-
-.menu > li:hover .submenu li:nth-child(8) {
-  -webkit-transition-delay: 466ms;
-     -moz-transition-delay: 466ms;
-      -ms-transition-delay: 466ms;
-       -o-transition-delay: 466ms;
-          transition-delay: 466ms;
-}
-
-/* backward */
-.submenu li:nth-child(1) {
-  -webkit-transition-delay: 466ms;
-     -moz-transition-delay: 466ms;
-      -ms-transition-delay: 466ms;
-       -o-transition-delay: 466ms;
-          transition-delay: 466ms;
-}
-
-.submenu li:nth-child(2) {
-  -webkit-transition-delay: 400ms;
-     -moz-transition-delay: 400ms;
-      -ms-transition-delay: 400ms;
-       -o-transition-delay: 400ms;
-          transition-delay: 400ms;
-}
-
-.submenu li:nth-child(3) {
-  -webkit-transition-delay: 333ms;
-     -moz-transition-delay: 333ms;
-      -ms-transition-delay: 333ms;
-       -o-transition-delay: 333ms;
-          transition-delay: 333ms;
-}
-
-.submenu li:nth-child(4) {
-  -webkit-transition-delay: 266ms;
-     -moz-transition-delay: 266ms;
-      -ms-transition-delay: 266ms;
-       -o-transition-delay: 266ms;
-          transition-delay: 266ms;
-}
-
-.submenu li:nth-child(5) {
-  -webkit-transition-delay: 200ms;
-     -moz-transition-delay: 200ms;
-      -ms-transition-delay: 200ms;
-       -o-transition-delay: 200ms;
-          transition-delay: 200ms;
-}
-
-.submenu li:nth-child(6) {
-  -webkit-transition-delay: 133ms;
-     -moz-transition-delay: 133ms;
-      -ms-transition-delay: 133ms;
-       -o-transition-delay: 133ms;
-          transition-delay: 133ms;
-}
-
-.submenu li:nth-child(7) {
-  -webkit-transition-delay: 66ms;
-     -moz-transition-delay: 66ms;
-      -ms-transition-delay: 66ms;
-       -o-transition-delay: 66ms;
-          transition-delay: 66ms;
-}
-
-.submenu li:nth-child(8) {
-  -webkit-transition-delay: 0s;
-     -moz-transition-delay: 0s;
-      -ms-transition-delay: 0s;
-       -o-transition-delay: 0s;
-          transition-delay: 0s;
-}
-
-/* Default
- ================================================================= */
-.submenu li {
-  opacity: 0;
-
-  -webkit-transition: opacity .4s, -webkit-transform .6s, max-height .6s;
-     -moz-transition: opacity .4s,    -moz-transform .6s, max-height .6s;
-      -ms-transition: opacity .4s,     -ms-transform .6s, max-height .6s;
-       -o-transition: opacity .4s,      -o-transform .6s, max-height .6s;
-          transition: opacity .4s,         transform .6s, max-height .6s;
-}
-
-.menu > li:hover .submenu li, .menu > li:focus .submenu li {
-  opacity: 1;
-
-  -webkit-transform: none;
-     -moz-transform: none;
-      -ms-transform: none;
-       -o-transform: none;
-          transform: none;
-}
-
-
-/* Venitian
- ================================================================= */
-.venitian li {
-  -webkit-transform-origin: 50% 0;
-     -moz-transform-origin: 50% 0;
-      -ms-transform-origin: 50% 0;
-       -o-transform-origin: 50% 0;
-          transform-origin: 50% 0;
-
-  -webkit-transform: scale(1,0);
-     -moz-transform: scale(1,0);
-      -ms-transform: scale(1,0);
-       -o-transform: scale(1,0);
-          transform: scale(1,0);
-}
-
-
 
 	</style>
 </head>
 <body>
-	<div id="main" role="main">
-	<ul id="menu1" class="menu">
-		<li tabindex="0">
-			Venitian
-			<ul class="submenu venitian">
-				<li>sub-One</li>
-				<li>sub-Two</li>
-				<li>sub-Three</li>
-				<li>sub-Four</li>
-				<li>sub-Five</li>
-				<li>sub-Six</li>
-				<li>sub-Seven</li>
-			</ul>
-		</li>
-	</ul><!-- /#menu1 -->
-</div></body>
+    <section id="contentWrapper">
+        <aside id="comingEvents">
+            <ul>
+                <li class="dropdown">
+                    <h2>THE SALAD<span class="bullet"></span></h2>
+                    <div><p>This is visible when the &lt;li&gt; is hovered over.</p></div>
+                </li>
+            
+                <li class="dropdown">
+                    <h2>THE OIGNONS<span class="bullet"></span></h2>
+                    <div><p>Its a little effect, and can be useful in many cases </p></div>
+                </li>
+            
+                <li class="dropdown">
+                    <h2>THE TOMATOE<span class="bullet"></span></h2>
+                    <div><p>To display any informations you want. </p></div>
+                </li>
+            
+                <li class="dropdown">
+                    <h2>THE SPECIALITY<span class="bullet"></span></h2>
+                    <div>
+                        <p>
+                            <form action="#" name="ListForm">
+                                <fieldset for="TxtSpecial">
+                                    <input type="text" name="TxtSpecial" placeholder="input" />
+                                </fieldset>
+                                <fieldset for="BtnSpecial">
+                                    <input type="submit" name="BtnSpecial" value="rocks !" />
+                                </fieldset>
+                            </form>
+                        </p>
+                    </div>
+                </li>
+            
+                <li class="dropdown">
+                    <h2>THE SUGGESTION<span class="bullet"></span></h2>
+                    <div><p><img src="http://www.southparkfr.com/images/perso/kennygrand.jpg" width="100" /></p>
+                </li>
+            </ul>
+        </aside>
+</section>
+</body>
 </html>

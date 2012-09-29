@@ -1,0 +1,100 @@
+#contentWrapper {
+	width:90%;
+	margin:0 5%;
+	clear:both;
+	overflow:auto;
+}
+/*__________________________________________COMING EVENTS_________________________________________*/
+@import: url(http://fonts.googleapis.com/css?family=Enriqueta:700);
+#contentWrapper #comingEvents{
+	width:25%;
+	height:auto;
+	float:left;
+	color: #fff;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+	
+}
+
+#comingEvents ul {
+    list-style: none;
+    width: 84%;
+    margin: 10px auto;
+    background: rgba(0,0,0,0.30);
+    padding:4% 8%;
+    /*border-radius*/
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#comingEvents h1 {
+	font-size: 20px;
+	color: #587b83;
+	text-shadow: 1px 1px 0px #707070, 2px 2px 0px #eee;
+	background: rgba(255,255,255,0.25);
+	border-radius: 5px;
+	padding: 10px 15px;
+	margin: 0 0 15px 0;
+	text-align:center;
+	font-weight:600;
+}
+
+#comingEvents h2 {
+	font-size: 18px;
+	color: #587b83;
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.5);
+	background: rgba(255,255,255,0.2);
+	border-radius: 5px;
+	padding: 10px 15px;
+	margin: 0;
+}
+
+#comingEvents ul li span.bullet {
+    border-color: transparent transparent transparent #587b83;
+    border-style: dotted;
+    /* 'dotted' or 'dashed' is better than'solid' for triangles, try to change 'dotted' -> 'solid' see the ugliest triangle ever !*/
+    border-width: 5px;
+    display: inline-block;
+    height: 0;
+    width: 0;
+	margin-left: 10px;
+	margin-top: -5px;
+}
+
+#comingEvents ul li div {
+    height: 0px;
+    opacity: 0;
+    margin-left: 8px;
+
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+#comingEvents ul li div {
+	font-size: 12px;
+}
+
+#comingEvents ul li:hover div {
+    opacity: 1;
+    height: 50px;
+}
+
+#comingEvents ul li.dropdown:hover span.bullet {
+    /*transform*/
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+/*_________________________________________________________RECENT BLOG_______________________________________________*/
+#contentWrapper #recentBlog{
+	width:75%;
+	height:100px;
+	float:left;
+	background-color:#c00;
+}
