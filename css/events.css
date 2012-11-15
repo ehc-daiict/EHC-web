@@ -23,7 +23,9 @@
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-
+#eventPeriod ul li{
+	overflow:hidden;
+}
 #eventPeriod h2 {
 	font-size: 18px;
 	color: #587b83;
@@ -32,6 +34,7 @@
 	padding: 5px 0;
 	margin: 0 0 0 15%;
 	cursor:pointer;
+	
 }
 
 #eventPeriod ul li span.bullet {
@@ -49,6 +52,12 @@
     -moz-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
+}
+
+#eventPeriod ul li span.year {
+	background-color:#ccc;
+	width:20px;
+	height:20px;
 }
 
 #eventPeriod ul li div {
