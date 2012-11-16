@@ -8,9 +8,9 @@ require 'blog.php';
 
 $value = "An error has occurred";
 $result = array("head" => array(), "body" => array() );
-if (isset($_GET["method"])){
+if (isset($_POST["method"])){
 	
-	switch ($_GET["method"]) {
+	switch ($_POST["method"]) {
 		
 		case "login":
 			$value = login();

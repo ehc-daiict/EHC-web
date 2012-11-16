@@ -1,8 +1,7 @@
 $(document).ready(function(){
-
 	var date = new Date();
 	var year = date.getFullYear();
-	var month = date.getMonth();
+	var month = date.getMonth();;
 
 	fetchRecentBlogs(year, month);
 
@@ -29,16 +28,16 @@ function makeBlog(title, date, author, post){
 function putRecentBlogs(blogs){
 	$('#contentWrapper #recentBlog').empty();
 	for(i = 0; i < blogs.length ; i++){
-		blogArticle = makeBlog(blogs[i].title, blogs[i].time, blogs[i].duration, blogs[i].venue, blogs[i].host, blogs[i].audience, blogs[i].registration, blogs[i].regLink, blogs[i].prerequisite, blogs[i].tools, blogs[i].desc );
+		blogArticle = makeBlog(blogs[i].title, blogs[i].date, blogs[i].author, blogs[i].post);
 		$('#contentWrapper #recentBlog').append(blogArticle);
 	}
 }
 
 function fetchRecentBlogs(year, month){
 	
-	monthNum = {'January':0, 'February':1, 'March':2, 'April':3, 'May':4, 'June':5, 'July':6, 'August':7, 'September':8, 'October':9, 'November':10, 'December':11};
+//	monthNum = {'January':0, 'February':1, 'March':2, 'April':3, 'May':4, 'June':5, 'July':6, 'August':7, 'September':8, 'October':9, 'November':10, 'December':11};
 	
-	$.post("php/api.php", {method : 'fetchRecentBlogs', year : year , month : monthNum[month]},function(retData){
+	$.post("php/api.php", {method : 'fetchRecentBlogs', year : year , month : month},function(retData){
 		//alert(retData.head.status + retData.body.username);
 		if(retData.head.status == 200){//accepted
 			putRecentBlogs(retData.body);
