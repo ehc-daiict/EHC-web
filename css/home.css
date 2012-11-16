@@ -102,15 +102,15 @@
 	float:left;
 }
 
-#events article.event{
+#recentBlog article.blogPost{
 	margin: 10px 30px 30px 30px;
 }
 
-.event header {
+.blogPost header {
 	
 }
 
-.event header h1{
+.blogPost header h1{
 	text-align:center;
 	margin:10px auto 0 auto;
 	
@@ -120,7 +120,7 @@
 
 }
 
-.event header hr {
+.blogPost header hr {
     border: 0;
     height: 2px;
 	margin:0 auto;
@@ -134,30 +134,30 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
 }
 
-.event section {
+.blogPost section {
 	margin:5px 50px 10px 50px;
 }
 
-.event section div.clear{
+.blogPost section div.clear{
 	clear:both;
 	overflow:auto;
 	margin:5px 0;
 }
 
-.event section div.blogPostMeta{
+.blogPost section div.blogPostMeta{
 	text-align:right;
 	margin:0 0 20px 0;
 	font-size:12px;
 }
 
-.event section div.blogPostMeta span.author{
+.blogPost section div.blogPostMeta span.author{
 	color:#090;
 }
 
-.event section div.blogPostMeta span.writtenDate{
+.blogPost section div.blogPostMeta span.writtenDate{
 	
 }
-.event section div.blogPostContent{
+.blogPost section div.blogPostContent{
 	font-family: Georgia, 'Times New Roman', serif;
 	font-size:19px;
 	line-height:29.75px;
@@ -166,10 +166,10 @@
 	margin:0 0 40px 0;
 }
 
-.event section div.blogPostContent{
+.blogPost section div.blogPostContent{
 }
 
-.event section hr {
+.blogPost section hr {
     border: none;
     height: 1px; /* Linien-Stärke */
     /*border-top: 1px solid #BBB; /* Linien-Stärke und Linien-Farbe  */
@@ -179,7 +179,7 @@
     display: block;
 }
 
-.event section hr:before {
+.blogPost section hr:before {
     content: '';
     width: 90%; /* Schatten - Breite */
     height: 20px;

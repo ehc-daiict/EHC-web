@@ -6,7 +6,6 @@ function getEventsFromDb($year, $month){
 	$body = array();
 	$event = array("title" => "", "time" => "", "duration" => "", "venue" => "", "host" => "", "audience" => "", "registration" => "", "regLink" => "", "prerequisite" => "", "tools" => "", "desc" => "" );
 	$query = "SELECT * FROM `events` WHERE `year` = '".mysql_real_escape_string($year)."'AND `month` = '".mysql_real_escape_string($month)."'";
-	echo $query;
     if($query_run = mysql_query($query)) {
         $query_num_rows = mysql_num_rows($query_run);
         if($query_num_rows == 0) {
@@ -46,10 +45,10 @@ function fetchEvents(){
 	$head = array("status" => "", "message" => "" );
 	$body = array();
 
-	if(isset($_GET['year']) && isset($_GET['month']) ) {
-        $year = $_GET['year'];
-        $month = $_GET['month'];
-        if (!empty($year)  && !empty($month + 1)) {//this + 1 is very important
+	if(isset($_POST['year']) && isset($_POST['month']) ) {
+        $year = $_POST['year'];
+        $month = $_POST['month'];
+        if (!empty($year) ) {//no need to check empty on month
         	if($month < 12){
 	            $result = getEventsFromDb($year, $month);
 	            return $result;

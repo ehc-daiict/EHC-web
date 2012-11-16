@@ -4,6 +4,7 @@ require 'core.inc.php';
 require 'connect.inc.php';
 require 'login.php';
 require 'events.php';
+require 'blog.php';
 
 $value = "An error has occurred";
 $result = array("head" => array(), "body" => array() );
@@ -29,6 +30,11 @@ if (isset($_GET["method"])){
 			$result = fetchEvents();
 			$result["head"]["message"] = getStatusCodeMessage( $result["head"]["status"] );
 			break;
+		case "fetchRecentBlogs":
+			$result = fetchRecentBlogs();
+			$result["head"]["message"] = getStatusCodeMessage( $result["head"]["status"] );
+			break;
+
 	}
 }
 

@@ -19,13 +19,27 @@ $(document).ready(function(){
 		else {
 			$('.simpleShow').eq(0).toggleClass('clickShow');	
 		}
+		
+		fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), $('#eventPeriod ul li div.clickShow').text());
+		
 		$('.clickBullet').toggleClass('clickBullet');
 		$(this).parent().toggleClass('clickBullet');
     });
 	$('#eventPeriod ul li div').click(function(e) {
 		$('#eventPeriod ul li div.clickShow').toggleClass('clickShow');
         $(this).toggleClass('clickShow');
-    });	
+		fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), $('#eventPeriod ul li div.clickShow').text());
+   });	
+   
+   //Registration Link
+   $('#events').on('click','.event section div.field a',function(e){
+	  event.preventDefault();
+	  if(isLoggedIn()){
+		  window.location.href = $(this).attr('href');
+	  }else{
+		$("#LoginMenu, #siteLogin").fadeIn('slow');  
+	  }
+   });
 });
 
 function selectCurrentMonth(year, month){	
@@ -38,7 +52,8 @@ function selectCurrentMonth(year, month){
 			$('.simpleShow').eq(month).toggleClass('clickShow');
 			break;
 		}
-	}	
+	}
+	fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), $('#eventPeriod ul li div.clickShow').text());	
 }
 
 function generateYear(year){
@@ -104,17 +119,24 @@ function makeEvent(title, time, duration, venue, host, audience, registration, r
 	return eventArticle;
 }
 
+function putEvents(events){
+	$('#contentWrapper #events').empty();
+	for(i = 0; i < events.length ; i++){
+		eventArticle = makeEvent(events[i].title, events[i].time, events[i].duration, events[i].venue, events[i].host, events[i].audience, events[i].registration, events[i].regLink, events[i].prerequisite, events[i].tools, events[i].desc );
+		$('#contentWrapper #events').append(eventArticle);
+	}
+}
+
 function fetchEvents(year, month){
-	$.post("php/api.php", {method : 'fetchEvents', year : year , month : month},function(retData){
+	
+	monthNum = {'January':0, 'February':1, 'March':2, 'April':3, 'May':4, 'June':5, 'July':6, 'August':7, 'September':8, 'October':9, 'November':10, 'December':11};
+	
+	$.post("php/api.php", {method : 'fetchEvents', year : year , month : monthNum[month]},function(retData){
 		//alert(retData.head.status + retData.body.username);
-		if(retData.head.status == 202){//accepted
-			setCookie('username',retData.body.username);
-			setCookie('fullname',retData.body.fullname);
-			
-			loginInterfaceToLogout();
-			
-		}else if(retData.head.status == 401){//unauthorized
-			//wrong username or password
+		if(retData.head.status == 200){//accepted
+			putEvents(retData.body);
+		}else if(retData.head.status == 404){//not found
+			$('#contentWrapper #events').empty();
 		}else if(retData.head.status == 400){//bad request
 			//form not completly filled
 		}
