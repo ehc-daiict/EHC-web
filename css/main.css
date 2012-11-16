@@ -182,13 +182,6 @@ body {
 	z-index:100;
 }
 
-#bar a {
-	text-decoration: none;
-	color: #2e2e2e;
-	-webkit-box-shadow:1px 1px 2px #000 inset;
-	box-shadow:1px 1px 2px #000 inset;
-}
-
 #LoginMenu {
 	position:fixed;
 	top:50%;
@@ -205,12 +198,22 @@ body {
 	box-shadow: 0 0 5px #000;
 	-mox-box-shadow: 0 0 5px #000;
 	-webkit-box-shadow: 0 0 5px #000;
-	height: 40px;
-	width: 6%;
+	height:;
+	width:;
 	position:absolute;
 	top:0;
 	right:0;
+
 }
+
+#bar a {
+	text-decoration: none;
+	color: #2e2e2e;
+	box-shadow:1px 1px 2px #000 inset;
+	-webkit-box-shadow:1px 1px 2px #000 inset;
+
+}
+
 #bar a:hover {
 	text-shadow:0 1px 1px #999;
 }
@@ -228,7 +231,12 @@ body {
 	text-align: center;
 	text-transform: uppercase;
 }
-
+#bar h1#hiUser {
+	display:none;
+}
+#bar h1#logInOut{
+	
+}
 
 /*LOGIN FORM*/
 #LoginMenu form {

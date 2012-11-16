@@ -181,6 +181,18 @@
 	font-weight:300;
 }
 
+.event section div.field a{
+	text-decoration:none;
+	font-family: Verdana, Geneva, sans-serifx;
+	font-size: 14px;
+	color: #993;
+	font-weight:300;
+	font-style:oblique;
+}
+
+.event section div.field a:hover{
+	text-shadow:0px 1px 0px rgb(5,5,5);
+}
 .event section div.description{
 	float:left;
 	display:inline-block;

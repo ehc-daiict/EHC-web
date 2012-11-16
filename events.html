@@ -35,17 +35,16 @@
                 <div id="LoginMenu">
                     <form>
                        <input type="text" name="firstname" required placeholder="Username"/>
-                       <input type="text" name="lastname" required placeholder="Password"/>
+                       <input type="password" name="lastname" required placeholder="Password"/>
                        <div id="loginButton">
                            <a class="button next" href="javascript:void(0)">Submit</a>
                        </div>
                     </form>
                 </div>    
                 <div id="bar">
-                    <a href="#"><h1>LOGIN</h1></a>
-                </div>
-                
-                
+                    <a href="#"><h1 id="hiUser"></h1></a>
+                    <a href="#"><h1 id="logInOut">LOGIN</h1></a>
+                </div>       
             </header>
     
             <nav id="siteNav">
@@ -74,39 +73,10 @@
             
 			  <aside id="eventPeriod">
                	<ul>    
-                        <li class="dropdown">
-                            <h2><span class="bullet"></span><span class="year">2012</span></h2>
-                            <div>January</div>
-                            <div>Februaury</div>
-                            <div>March</div>
-                            <div>April</div>
-                            <div>May</div>
-                            <div>June</div>
-                            <div>July</div>
-                            <div>August</div>
-                            <div>September</div>
-                            <div>October</div>
-                            <div>November</div>
-                            <div>December</div>
-                        </li>
-						<li class="dropdown">
-                            <h2><span class="bullet"></span><span class="year">2013</span></h2>
-                            <div>January</div>
-                            <div>Februaury</div>
-                            <div>March</div>
-                            <div>April</div>
-                            <div>May</div>
-                            <div>June</div>
-                            <div>July</div>
-                            <div>August</div>
-                            <div>September</div>
-                            <div>October</div>
-                            <div>November</div>
-                            <div>December</div>
-                        </li>
+              	<!-- generating content in js -->          
 
-                    </ul>
-                </aside>
+                </ul>
+              </aside>
                 <section id="events">
                 	
 					<article class="event">
@@ -131,7 +101,7 @@
                             	<div class="label">Target Audience</div><div class="colon">:</div><div class="field">Ist Yr., IInd Yr.</div>
                             </div>
                             <div class="clear">
-                            	<div class="label">Registration</div><div class="colon">:</div><div class="field">Open (Click to register)</div>
+                            	<div class="label">Registration</div><div class="colon">:</div><div class="field">Open <a href="#">(Click to register)</a></div>
                             </div>
 	                        <div class="clear">
                             	<div class="label">Prerequisite</div><div class="colon">:</div><div class="field">Nothing</div>
