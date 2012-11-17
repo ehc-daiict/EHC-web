@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var month = date.getMonth();;
 
 	fetchRecentBlogs(year, month);
-
+	fetchComingEvents(year, month);
 });
 
 function makeBlog(title, date, author, post){
@@ -47,4 +47,51 @@ function fetchRecentBlogs(year, month){
 			//form not completly filled
 		}
 	}, "json");		
+}
+function makeComingEvent(title, time, venue, desc){
+	var comingEventArticle = "<li class='dropdown'>\
+								<h2>" + title + "<span class='bullet'></span></h2>\
+								<div class='eventBody'>\
+									<div class='clear'>\
+										<div class='label'>Time</div><div class='colon'>-</div><div class='field'>" + time + "</div>\
+									</div>\
+									<div class='clear'>\
+										<div class='label'>Venue</div><div class='colon'>-</div><div class='field'>" + venue + "</div>\
+									</div>\
+									<div class='clear'>\
+										<div class='label'>Desc</div><div class='colon'>-</div><div class='field'>" + desc + "</div>\
+									</div>\
+								</div>\
+							</li>";
+	return comingEventArticle;
+
+}
+
+function makeComingEventsHeading(){
+	$('#contentWrapper #comingEvents ul').append("<li class='dropdown'>\
+                            						<h1>Coming Events</h1>\
+                        							</li>");
+}
+function putComingEvents(comingEvents){
+	$('#contentWrapper #comingEvents ul').empty();
+	makeComingEventsHeading();
+	for(i = 0; i < comingEvents.length ; i++){
+		comingEventArticle = makeComingEvent(comingEvents[i].title, comingEvents[i].time, comingEvents[i].venue, comingEvents[i].desc);
+		$('#contentWrapper #comingEvents ul').append(comingEventArticle);
+	}
+
+}
+function fetchComingEvents(year, month){
+	$.post("php/api.php", {method : 'fetchComingEvents', year : year , month : month},function(retData){
+		//alert(retData.head.status + retData.body.username);
+		if(retData.head.status == 200){//accepted
+			putComingEvents(retData.body);
+		}else if(retData.head.status == 404){//not found
+			$('#contentWrapper #comingEvents ul').empty();
+			makeComingEventsHeading();
+		}else if(retData.head.status == 400){//bad request
+			//form not completly filled
+		}
+	}, "json");		
+	
 }

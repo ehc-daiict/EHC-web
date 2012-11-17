@@ -34,7 +34,10 @@ if (isset($_POST["method"])){
 			$result = fetchRecentBlogs();
 			$result["head"]["message"] = getStatusCodeMessage( $result["head"]["status"] );
 			break;
-
+		case "fetchComingEvents":
+			$result = fetchComingEvents();
+			$result["head"]["message"] = getStatusCodeMessage( $result["head"]["status"] );
+			break;
 	}
 }
 

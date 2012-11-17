@@ -47,7 +47,7 @@
 	background: rgba(255,255,255,0.2);
 	border-radius: 5px;
 	padding: 10px 15px;
-	margin: 0;
+	margin: 10px 0;
 }
 
 #comingEvents ul li span.bullet {
@@ -66,25 +66,52 @@
     -o-transition: all .5s ease-in-out;
     transition: all .5s ease-in-out;
 }
-
-#comingEvents ul li div {
-    height: 0px;
-    opacity: 0;
-    margin-left: 8px;
-	color : #000;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
+#comingEvents ul li{
+	overflow:hidden;	
 }
+#comingEvents ul li div.eventBody{
+	opacity: 0;	
+	height:0;
+	-webkit-transition: opacity .3s ease-in-out;
+    -moz-transition: opacity .3s ease-in-out;
+    -o-transition: opacity .3s ease-in-out;
+    transition: opacity .3s ease-in-out;
 
-#comingEvents ul li div {
+}
+#comingEvents ul li div.clear {
+    height: auto;
+    margin:5px 0 5px 8px;
+	color : #000;
+	clear:both;
+	overflow:auto;
 	font-size: 12px;
 }
 
-#comingEvents ul li:hover div {
+#comingEvents ul li div.label {
+	float:left;
+	width:40px;
+	margin:0 0 0 15px;
+	color: #111;
+	text-shadow: 0px 1px 1px rgba(255,255,255,0.9);
+	font-weight:bold;
+}
+#comingEvents ul li div.colon {
+	float:left;
+	width:10px;
+	text-align:center;
+	color: #00F;
+	font-weight:bolder;
+}
+#comingEvents ul li div.field {
+	float:left;
+	margin:0 0 0 10px;
+	width:150px;
+	font-family: Verdana, Geneva, sans-serifx;
+	color: #000;
+}
+#comingEvents ul li:hover div.eventBody {
     opacity: 1;
-    height: 50px;
+    height:auto;
 }
 
 #comingEvents ul li.dropdown:hover span.bullet {

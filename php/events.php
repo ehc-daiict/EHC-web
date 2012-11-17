@@ -62,4 +62,58 @@ function fetchEvents(){
     return $result;
 }
 
+function getComingEventsFromDb($year, $month){
+    $result = array("head" => array(), "body" => array() );
+    $head = array("status" => "", "message" => "" );
+    $body = array();
+    $event = array("title" => "", "time" => "", "venue" => "", "desc" => "" );
+    $query = "SELECT Name,Time,Venue,Short_Description FROM `events` WHERE `year` >= '".mysql_real_escape_string($year)."'AND `month` >= '".mysql_real_escape_string($month)."'";
+    if($query_run = mysql_query($query)) {
+        $query_num_rows = mysql_num_rows($query_run);
+        if($query_num_rows == 0) {
+            $head["status"] = 404;
+        }
+        else {
+            for($i = 0; $i < $query_num_rows ; $i++){
+                $event["title"] = mysql_result($query_run, $i, 'Name');
+                $event["time"]= mysql_result($query_run, $i, 'Time');
+                $event["venue"] = mysql_result($query_run, $i, 'Venue');
+                $event["desc"] = mysql_result($query_run, $i, 'Short_Description');
+
+                $body[$i] = $event;
+            }
+
+            $head["status"] = 200;
+
+        }
+    }else {
+    $head["status"] = 400;
+    }
+
+    $result["head"] = $head;
+    $result["body"] = $body;
+    return $result;
+}
+
+function fetchComingEvents(){
+    $result = array("head" => array(), "body" => array() );
+    $head = array("status" => "", "message" => "" );
+    $body = array();
+
+    if(isset($_POST['year']) && isset($_POST['month']) ) {
+        $year = $_POST['year'];
+        $month = $_POST['month'];
+        if (!empty($year) ) {//no need to check empty on month
+            if($month < 12){
+                $result = getComingEventsFromDb($year, $month);
+                return $result;
+            }//else badRequest
+        } //else badRequest
+    }//else badRequest
+
+    $head["status"] = 400;
+    $result["head"] = $head;
+    $result["body"] = $body;
+    return $result;
+}
 ?>
