@@ -9,12 +9,9 @@ $(document).ready(function(){
 
 	makeTimeline(year);
 	
-	
-	
 	window.onpopstate = function(e) {
 		
         if(e.state == null){ //this is for first page load on chrome
-			alert(1);
 			return;
 		} else {
 			selectCurrentMonth(e.state.year, monthNum[ e.state.month ], false);
@@ -107,7 +104,11 @@ function selectCurrentMonth(year, month, bool_pushState){
 	selectedYear = year;
 	selectedMonth = $('.clickShow').text();
 	if(bool_pushState){
-		history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth);
+		if(getHash('articleID') == null) {
+			history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth);
+		} else {
+			history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth + "&articleID=" + getHash('articleID'));
+		}
 	}
 	fetchEvents(selectedYear, monthNum[selectedMonth]);	
 }
@@ -181,11 +182,16 @@ function putEvents(events){
 		eventArticle = makeEvent(events[i].index, events[i].title, events[i].time, events[i].duration, events[i].venue, events[i].host, events[i].audience, events[i].registration, events[i].regLink, events[i].prerequisite, events[i].tools, events[i].desc );
 		$('#contentWrapper #events').append(eventArticle);
 	}
+	
+		if(getHash('articleID') != null){
+			$('html, body').animate({
+    	    	scrollTop: $('#'+getHash('articleID')).offset().top
+     			}, 1000);
+		}
+
 }
 
 function fetchEvents(year, month){
-	
-		
 	$.post("php/api.php", {method : 'fetchEvents', year : year , month : month},function(retData){
 		//alert(retData.head.status + retData.body.username);
 		if(retData.head.status == 200){//accepted
