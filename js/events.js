@@ -1,3 +1,6 @@
+monthNum = {'January':0, 'February':1, 'March':2, 'April':3, 'May':4, 'June':5, 'July':6, 'August':7, 'September':8, 'October':9, 'November':10, 'December':11};
+
+
 $(document).ready(function(){
 
 	var date = new Date();
@@ -5,7 +8,28 @@ $(document).ready(function(){
 	var month = date.getMonth();
 
 	makeTimeline(year);
-	selectCurrentMonth(year, month);
+	
+	
+	
+	window.onpopstate = function(e) {
+		
+        if(e.state == null){ //this is for first page load on chrome
+			alert(1);
+			return;
+		} else {
+			selectCurrentMonth(e.state.year, monthNum[ e.state.month ], false);
+		}
+	}
+	
+	//this is for first page load on firefox & chrome
+	if(getHash('year') == null){
+		selectCurrentMonth(year, month, true);
+	}else if(getHash('month') == null){
+		selectCurrentMonth(getHash('year'), 0), true;
+	}else {
+		selectCurrentMonth(getHash('year'), monthNum[ getHash('month') ], true );	
+	}			
+	
 
 	$('#eventPeriod ul li h2').click(function(e) {
 		
@@ -20,7 +44,11 @@ $(document).ready(function(){
 			$('.simpleShow').eq(0).toggleClass('clickShow');	
 		}
 		
-		fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), $('#eventPeriod ul li div.clickShow').text());
+		selectedYear = $(this).find('span.year').html();
+		selectedMonth = $('.clickShow').html();
+		history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth);
+		
+		fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), monthNum[ $('#eventPeriod ul li div.clickShow').text() ]);
 		
 		$('.clickBullet').toggleClass('clickBullet');
 		$(this).parent().toggleClass('clickBullet');
@@ -28,7 +56,12 @@ $(document).ready(function(){
 	$('#eventPeriod ul li div').click(function(e) {
 		$('#eventPeriod ul li div.clickShow').toggleClass('clickShow');
         $(this).toggleClass('clickShow');
-		fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), $('#eventPeriod ul li div.clickShow').text());
+		
+		selectedYear = $(this).siblings('h2').find('span.year').text();
+		selectedMonth = $(this).html();
+		history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth);
+
+		fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), monthNum[ $('#eventPeriod ul li div.clickShow').text() ]);
    });	
    
    //Registration Link
@@ -42,18 +75,41 @@ $(document).ready(function(){
    });
 });
 
-function selectCurrentMonth(year, month){	
+function getHash(name){
+	var hash = window.location.hash.slice(1).split("&");
+	for (i=0;i<hash.length;i++){
+		pairs = hash[i].split('=');
+		pairs[0]=pairs[0].replace(/^\s+|\s+$/g,"");
+		if (pairs[0]==name)
+		{
+			pairs[1]=pairs[1].replace(/^\s+|\s+$/g,"");
+			return unescape(pairs[1]);
+		}
+	}	
+}
+
+function selectCurrentMonth(year, month, bool_pushState){	
 	var yearElements = $('#eventPeriod ul li h2 span.year');
 	var yearsLength = yearElements.length;
 	for(var i =0; i < yearsLength ; i++) {
 		if($(yearElements[i]).html() == year){
 			$(yearElements[i]).parents().eq(1).toggleClass('clickBullet');
-			$(yearElements[i]).parents().eq(1).find('div').toggleClass('simpleShow'); //getting to parent li
+			$('.simpleShow').toggleClass('simpleShow');
+			$(yearElements[i]).parents().eq(1).find('div').addClass('simpleShow'); //getting to parent li
+			$('.clickShow').toggleClass('clickShow');
 			$('.simpleShow').eq(month).toggleClass('clickShow');
 			break;
 		}
 	}
-	fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), $('#eventPeriod ul li div.clickShow').text());	
+	
+	//selectedYear = $('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text();
+	//selectedMonth = $('#eventPeriod ul li div.clickShow').text();
+	selectedYear = year;
+	selectedMonth = $('.clickShow').text();
+	if(bool_pushState){
+		history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth);
+	}
+	fetchEvents(selectedYear, monthNum[selectedMonth]);	
 }
 
 function generateYear(year){
@@ -79,8 +135,8 @@ function makeTimeline(year){
 	$('#eventPeriod ul').append( generateYear(year) );
 	$('#eventPeriod ul').append( generateYear( year + 1) );
 }
-function makeEvent(title, time, duration, venue, host, audience, registration, regLink, prerequisite, tools, desc){
-	var eventArticle = "<article class='event'>\
+function makeEvent(id, title, time, duration, venue, host, audience, registration, regLink, prerequisite, tools, desc){
+	var eventArticle = "<article class='event' id='" + id + "'>\
                     	<header>\
                         	<h1>" + title + "</h1>\
                             <hr>\
@@ -122,16 +178,15 @@ function makeEvent(title, time, duration, venue, host, audience, registration, r
 function putEvents(events){
 	$('#contentWrapper #events').empty();
 	for(i = 0; i < events.length ; i++){
-		eventArticle = makeEvent(events[i].title, events[i].time, events[i].duration, events[i].venue, events[i].host, events[i].audience, events[i].registration, events[i].regLink, events[i].prerequisite, events[i].tools, events[i].desc );
+		eventArticle = makeEvent(events[i].index, events[i].title, events[i].time, events[i].duration, events[i].venue, events[i].host, events[i].audience, events[i].registration, events[i].regLink, events[i].prerequisite, events[i].tools, events[i].desc );
 		$('#contentWrapper #events').append(eventArticle);
 	}
 }
 
 function fetchEvents(year, month){
 	
-	monthNum = {'January':0, 'February':1, 'March':2, 'April':3, 'May':4, 'June':5, 'July':6, 'August':7, 'September':8, 'October':9, 'November':10, 'December':11};
-	
-	$.post("php/api.php", {method : 'fetchEvents', year : year , month : monthNum[month]},function(retData){
+		
+	$.post("php/api.php", {method : 'fetchEvents', year : year , month : month},function(retData){
 		//alert(retData.head.status + retData.body.username);
 		if(retData.head.status == 200){//accepted
 			putEvents(retData.body);

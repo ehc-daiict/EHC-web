@@ -4,7 +4,7 @@ function getEventsFromDb($year, $month){
 	$result = array("head" => array(), "body" => array() );
 	$head = array("status" => "", "message" => "" );
 	$body = array();
-	$event = array("title" => "", "time" => "", "duration" => "", "venue" => "", "host" => "", "audience" => "", "registration" => "", "regLink" => "", "prerequisite" => "", "tools" => "", "desc" => "" );
+	$event = array("index" => "", "title" => "", "time" => "", "duration" => "", "venue" => "", "host" => "", "audience" => "", "registration" => "", "regLink" => "", "prerequisite" => "", "tools" => "", "desc" => "" );
 	$query = "SELECT * FROM `events` WHERE `year` = '".mysql_real_escape_string($year)."'AND `month` = '".mysql_real_escape_string($month)."'";
     if($query_run = mysql_query($query)) {
         $query_num_rows = mysql_num_rows($query_run);
@@ -13,6 +13,7 @@ function getEventsFromDb($year, $month){
         }
         else {
         	for($i = 0; $i < $query_num_rows ; $i++){
+                $event["index"] = mysql_result($query_run, $i, 'Index');
         		$event["title"] = mysql_result($query_run, $i, 'Name');
         		$event["time"]= mysql_result($query_run, $i, 'Time');
         		$event["duration"] = mysql_result($query_run, $i, 'Duration');
