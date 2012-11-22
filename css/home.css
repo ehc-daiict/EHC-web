@@ -47,8 +47,20 @@
 	background: rgba(255,255,255,0.2);
 	border-radius: 5px;
 	padding: 10px 15px;
-	margin: 10px 0;
+	margin: 0px 0;
 }
+
+#comingEvents h2 a{
+	text-decoration:none;
+	color: #484848;
+}
+
+#comingEvents h2 a:hover{
+	text-decoration:none;
+	color: #484848;
+	text-shadow:0 0 1px #000;
+}
+
 
 #comingEvents ul li span.bullet {
     border-color: transparent transparent transparent #587b83;
@@ -67,7 +79,8 @@
     transition: all .5s ease-in-out;
 }
 #comingEvents ul li{
-	overflow:hidden;	
+	overflow:hidden;
+	margin:5px 0;
 }
 #comingEvents ul li div.eventBody{
 	opacity: 0;	

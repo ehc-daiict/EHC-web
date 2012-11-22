@@ -67,8 +67,8 @@ function getComingEventsFromDb($year, $month){
     $result = array("head" => array(), "body" => array() );
     $head = array("status" => "", "message" => "" );
     $body = array();
-    $event = array("title" => "", "time" => "", "venue" => "", "desc" => "" );
-    $query = "SELECT Name,Time,Venue,Short_Description FROM `events` WHERE `year` >= '".mysql_real_escape_string($year)."'AND `month` >= '".mysql_real_escape_string($month)."'";
+    $event = array("index" => "", "title" => "", "time" => "", "venue" => "", "desc" => "" , "year" => "", "month" => "");
+    $query = "SELECT Events.Index,Name,Time,Venue,Short_Description,Year,Month FROM `events` WHERE `year` >= '".mysql_real_escape_string($year)."'AND `month` >= '".mysql_real_escape_string($month)."'";
     if($query_run = mysql_query($query)) {
         $query_num_rows = mysql_num_rows($query_run);
         if($query_num_rows == 0) {
@@ -76,10 +76,13 @@ function getComingEventsFromDb($year, $month){
         }
         else {
             for($i = 0; $i < $query_num_rows ; $i++){
+                $event["index"] = mysql_result($query_run, $i, 'Index');
                 $event["title"] = mysql_result($query_run, $i, 'Name');
                 $event["time"]= mysql_result($query_run, $i, 'Time');
                 $event["venue"] = mysql_result($query_run, $i, 'Venue');
                 $event["desc"] = mysql_result($query_run, $i, 'Short_Description');
+                $event["year"] = mysql_result($query_run, $i, 'Year');
+                $event["month"] = mysql_result($query_run, $i, 'Month');
 
                 $body[$i] = $event;
             }
