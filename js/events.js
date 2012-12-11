@@ -1,5 +1,5 @@
 monthNum = {'January':0, 'February':1, 'March':2, 'April':3, 'May':4, 'June':5, 'July':6, 'August':7, 'September':8, 'October':9, 'November':10, 'December':11};
-
+monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 $(document).ready(function(){
 
@@ -11,22 +11,15 @@ $(document).ready(function(){
 	
 	window.onpopstate = function(e) {
 		
-        if(e.state == null){ //this is for first page load on chrome
+    if(e.state == null){ //this is for first page load on chrome, for mozilla this event is not fired for the first page load
 			return;
 		} else {
-			selectCurrentMonth(e.state.year, monthNum[ e.state.month ], false);
+			loadData(e.state.year, monthNum[ e.state.month ], null);
 		}
 	}
 	
-	//this is for first page load on firefox & chrome
-	if(getHash('year') == null){
-		selectCurrentMonth(year, month, true);
-	}else if(getHash('month') == null){
-		selectCurrentMonth(getHash('year'), 0), true;
-	}else {
-		selectCurrentMonth(getHash('year'), monthNum[ getHash('month') ], true );	
-	}			
-	
+	//this is for first page load
+	init(year, month);	
 
 	$('#eventPeriod ul li h2').click(function(e) {
 		
@@ -41,24 +34,24 @@ $(document).ready(function(){
 			$('.simpleShow').eq(0).toggleClass('clickShow');	
 		}
 		
-		selectedYear = $(this).find('span.year').html();
-		selectedMonth = $('.clickShow').html();
-		history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth);
-		
-		fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), monthNum[ $('#eventPeriod ul li div.clickShow').text() ]);
+		var yearSpec = $(this).find('span.year').html();
+		var monthSpec = $('.clickShow').html();
+		addNewState(yearSpec, monthSpec, null);
+		loadData(yearSpec, monthNum[ monthSpec ], null);
 		
 		$('.clickBullet').toggleClass('clickBullet');
 		$(this).parent().toggleClass('clickBullet');
     });
+	
+	
 	$('#eventPeriod ul li div').click(function(e) {
 		$('#eventPeriod ul li div.clickShow').toggleClass('clickShow');
         $(this).toggleClass('clickShow');
 		
-		selectedYear = $(this).siblings('h2').find('span.year').text();
-		selectedMonth = $(this).html();
-		history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth);
-
-		fetchEvents($('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text(), monthNum[ $('#eventPeriod ul li div.clickShow').text() ]);
+		var yearSpec = $(this).siblings('h2').find('span.year').text();
+		var monthSpec = $(this).html();
+		addNewState(yearSpec, monthSpec, null);
+		loadData(yearSpec, monthNum[ monthSpec ], null);
    });	
    
    //Registration Link
@@ -85,7 +78,44 @@ function getHash(name){
 	}	
 }
 
-function selectCurrentMonth(year, month, bool_pushState){	
+function addNewState(year, month, articleId){
+	if(articleId == null){
+		history.pushState({'year':year, 'month': month}, document.title, location.pathname+location.search+"#year="+ year +"&month="+ month);
+	}else {
+		history.pushState({'year':year, 'month': month}, document.title, location.pathname+location.search+"#year="+ year +"&month="+ month + "&articleID=" + articleId);
+	}
+}
+
+function replaceCurrentState(year, month, articleId){
+	if(articleId == null){
+		history.replaceState({'year':year, 'month': month}, document.title, location.pathname+location.search+"#year="+ year +"&month="+ month);
+	}else {
+		history.replaceState({'year':year, 'month': month}, document.title, location.pathname+location.search+"#year="+ year +"&month="+ month + "&articleID=" + articleId);
+	}
+}
+
+
+function init(year, month){
+	if(getHash('year') == null){
+		loadData(year, month, null);
+		replaceCurrentState(year, monthName[ month ], null);
+	}else if(getHash('month') == null){
+		var yearSpec = getHash('year');
+		
+		loadData(yearSpec, 0, null);
+		replaceCurrentState(yearSpec, monthName[ 0 ], null);
+	}else {
+		var yearSpec = getHash('year');
+		var monthSpec = getHash('month');
+		var articleId = getHash('articleID');
+		loadData(yearSpec, monthNum[ monthSpec ], articleId );
+		replaceCurrentState(yearSpec, monthSpec, articleId);
+	}			
+}
+
+function loadData(year, month, articleId){	
+
+	//Changing categories selection and highlighting
 	var yearElements = $('#eventPeriod ul li h2 span.year');
 	var yearsLength = yearElements.length;
 	for(var i =0; i < yearsLength ; i++) {
@@ -99,21 +129,11 @@ function selectCurrentMonth(year, month, bool_pushState){
 		}
 	}
 	
-	//selectedYear = $('#eventPeriod ul li div.clickShow').siblings('h2').find('span.year').text();
-	//selectedMonth = $('#eventPeriod ul li div.clickShow').text();
-	selectedYear = year;
-	selectedMonth = $('.clickShow').text();
-	if(bool_pushState){
-		if(getHash('articleID') == null) {
-			history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth);
-		} else {
-			history.pushState({'year':selectedYear, 'month': selectedMonth}, document.title, location.pathname+location.search+"#year="+ selectedYear +"&month="+ selectedMonth + "&articleID=" + getHash('articleID'));
-		}
-	}
-	fetchEvents(selectedYear, monthNum[selectedMonth]);	
+	loadEvents(year, month);	
 }
 
-function generateYear(year){
+
+function makeYear(year){
 	var li = "<li class='dropdown'> \
 				<h2><span class='bullet'></span><span class='year'>" + year + "</span></h2> \
 				<div>January</div>\
@@ -132,9 +152,9 @@ function generateYear(year){
 	return li;
 }
 function makeTimeline(year){
-	
-	$('#eventPeriod ul').append( generateYear(year) );
-	$('#eventPeriod ul').append( generateYear( year + 1) );
+	$('#eventPeriod ul').append( makeYear( year - 1) );	
+	$('#eventPeriod ul').append( makeYear(year) );
+	$('#eventPeriod ul').append( makeYear( year + 1) );
 }
 function makeEvent(id, title, time, duration, venue, host, audience, registration, regLink, prerequisite, tools, desc){
 	var eventArticle = "<article class='event' id='" + id + "'>\
@@ -183,15 +203,16 @@ function putEvents(events){
 		$('#contentWrapper #events').append(eventArticle);
 	}
 	
-		if(getHash('articleID') != null){
-			$('html, body').animate({
-    	    	scrollTop: $('#'+getHash('articleID')).offset().top
-     			}, 1000);
-		}
-
+	//this must be added here so that scrolling must occur after completion of the loading process
+	alert(getHash('articleID'));
+	if(getHash('articleID') != null){
+		$('html, body').animate({
+        	scrollTop: $('#'+getHash('articleID')).offset().top
+    		}, 1000);
+	}
 }
 
-function fetchEvents(year, month){
+function loadEvents(year, month){
 	$.post("php/api.php", {method : 'fetchEvents', year : year , month : month},function(retData){
 		//alert(retData.head.status + retData.body.username);
 		if(retData.head.status == 200){//accepted
