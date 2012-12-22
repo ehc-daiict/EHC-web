@@ -5,6 +5,7 @@ require 'connect.inc.php';
 require 'login.php';
 require 'events.php';
 require 'blog.php';
+require 'resources.php';
 
 $value = "An error has occurred";
 $result = array("head" => array(), "body" => array() );
@@ -38,6 +39,11 @@ if (isset($_POST["method"])){
 			$result = fetchComingEvents();
 			$result["head"]["message"] = getStatusCodeMessage( $result["head"]["status"] );
 			break;
+		case "bookRoom":
+			$result = bookRoom();
+			$result["head"]["message"] = getStatusCodeMessage( $result["head"]["status"] );
+			break;
+
 	}
 }
 
