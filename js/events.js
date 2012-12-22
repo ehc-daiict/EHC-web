@@ -11,9 +11,10 @@ $(document).ready(function(){
 	
 	window.onpopstate = function(e) {
 		
-    if(e.state == null){ //this is for first page load on chrome, for mozilla this event is not fired for the first page load
+    	if(e.state == null){ //this is for first page load on chrome, for mozilla this event is not fired for the first page load
 			return;
 		} else {
+			
 			loadData(e.state.year, monthNum[ e.state.month ], null);
 		}
 	}
