@@ -28,6 +28,7 @@
             <header id="siteHeader">
             	
                 <section id="siteLogo">
+                    <img src="img/web_logo.png">
                 </section>
                 
                 
@@ -51,17 +52,14 @@
     
             <nav id="siteNav">
                 <ul class="menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Events</a>
-                    	
-                    </li>
-                    <li><a href="#">Resources</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Projects</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Team</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blogs.html">Blog</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
                 
                 <aside id="siteSearch">
@@ -76,42 +74,77 @@
                 <section id="bookOption">
                     
                     <section class="bookOptions">
-                        <img src="" alt="EHC ROOM" />
-                        <a href="#"> Reserve EHC Room </a>
+                        <a href="#"><img src="img/room.jpg" alt="EHC ROOM" />
+                            Reserve EHC Room </a>
                     </section>
                     <section class="bookOptions">
-                        <img src="" alt="Components" />
-                        <a href="#"> Issue Components </a>
+                        <a href="#"><img src="img/components.jpg" alt="Components" />
+                            Issue Components </a>
                     </section>
                     <section class="bookOptions">
-                        <img src="" alt="Books" />
-                        <a href="#"> Issue Books </a>
+                        <a href="#"><img src="img/books.jpg" alt="Books" />
+                             Issue Books </a>
                     </section>
                 
                 </section>
+
+                <div id="bookingForms">
+                    
+                    <section id="bookRoom">
+                    	<header>Reserve EHC Room<hr></header>
+                    	<form action="#" >
+                            <div class="input"><label for="">Username</label><span class="colon">:</span><input type="text" placeholder="" name="userName"></div>
+                            <div class="input"><label for="">No. of Persons</label><span class="colon">:</span><input type="number" name="noOfPerson"></div>
+                        	<div class="input"><label for="">Date</label><span class="colon">:</span><input type="date" name="date"></div>
+                            <div class="input"><label for="">Time(From)</label><span class="colon">:</span><input type="time"  name="timeFrom"></div>
+                            <div class="input"><label for="">Time(Upto)</label><span class="colon">:</span><input type="time"  name="duration"></div>
+                            <div class="input"><label for="">Purpose</label><span class="colon">:</span><textarea  name="purpose"></textarea></div>
+                            <div class="button">
+                            	<a href="#">Done &#187;</a>
+                            	<p class="top">We will be in</p>
+                            	<p class="bottom">touch soon!</p>
+                      		</div>
+                        </form>
+                    </section>
                 
-                <section id="bookRoom">
-                
-                	<header>Reserve EHC Room</header>
-                	<form action="#" >
-                        <div><label for="">Name</label><span class="colon">:</span><input type="text" placeholder=""></div>
-                        <div><label for="">Email</label><span class="colon">:</span><input type="email"></div>
-                        <div><label for="">Phone No.</label><span class="colon">:</span><input type="number"></div>
-                        <div><label for="">No. of Persons</label><span class="colon">:</span><input type="number"></div>
-                    	<div><label for="">Date</label><span class="colon">:</span><input type="date"></div>
-                        <div><label for="">Time(From)</label><span class="colon">:</span><input type="time"></div>
-                        <div><label for="">Time(Upto)</label><span class="colon">:</span><input type="time"></div>
-                        <div><label for="">Reason</label><span class="colon">:</span><textarea ></textarea></div>
-                        <div class="button">
-                        	<a href="#">Done &#187;</a>
-                        	<p class="top">We will be in</p>
-                        	<p class="bottom">touch soon!</p>
-                  		</div>
-                    </form>
+                    <section id="bookComponent">
+                        <header>Issue Components<hr></header>
+                        <form action="#" >
+                            <div class="input"><label for="">Userame</label><span class="colon">:</span><input type="text" placeholder="" name="userName"></div>
+                            <div class="input"><label for="">No. of Persons</label><span class="colon">:</span><input type="number" name="noOfPerson"></div>
+                            <div class="input"><label for="">Date</label><span class="colon">:</span><input type="date" name="date"></div>
+                            <div class="input"><label for="">Time(From)</label><span class="colon">:</span><input type="time" name="timeFrom"></div>
+                            <div class="input"><label for="">Time(Upto)</label><span class="colon">:</span><input type="time" name="duration"></div>
+                            <div class="input"><label for="">Component</label><span class="colon">:</span><textarea  name="components" placeholder="ComponentName:Quantity,ComponentName:Quantity.." ></textarea></div>
+                            <div class="input"><label for="">Purpose</label><span class="colon">:</span><textarea  name="purpose"></textarea></div>
+                            <div class="button">
+                                <a href="#">Done &#187;</a>
+                                <p class="top">We will be in</p>
+                                <p class="bottom">touch soon!</p>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section id="bookBook">
+                        <header>Issue Book<hr></header>
+                        <form action="#" >
+                            <div class="input"><label for="">Userame</label><span class="colon">:</span><input type="text" placeholder="" name="userName"></div>
+                            <div class="input"><label for="">No. of Persons</label><span class="colon">:</span><input type="number" name="noOfPerson"></div>
+                            <div class="input"><label for="">Date</label><span class="colon">:</span><input type="date" name="date"></div>
+                            <div class="input"><label for="">Time(From)</label><span class="colon">:</span><input type="time" name="timeFrom"></div>
+                            <div class="input"><label for="">Time(Upto)</label><span class="colon">:</span><input type="time" name="duration"></div>
+                            <div class="input"><label for="">Book Name</label><span class="colon">:</span><input type="text" name="bookName"></div>
+                            <div class="input"><label for="">Purpose</label><span class="colon">:</span><textarea name="purpose"></textarea></div>
+                            <div class="button">
+                                <a href="#">Done &#187;</a>
+                                <p class="top">We will be in</p>
+                                <p class="bottom">touch soon!</p>
+                            </div>
+                        </form>
+                    </section>
                     
                 </section>
-                
-            </section>
+            </div>
             <section id="noOverlap">
             
             </section>

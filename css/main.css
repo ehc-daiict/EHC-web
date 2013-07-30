@@ -166,8 +166,11 @@ body {
 	clear:both;
 }
 
-#siteLogo {
-	width:;	
+#siteLogo img{
+	width:auto;
+	height:80px;
+	margin:10px 0 10px 80px;	
+	overflow: hidden;
 }
 
 /*_____________LOGIN_______________*/
@@ -386,7 +389,7 @@ body {
 	height:auto;
 	width:72%;
 	padding: 0px 8% 0px 0%;
-	margin:0;
+	margin:0 0 0 4%;
 	background: #069;
 	clear:both;
 	

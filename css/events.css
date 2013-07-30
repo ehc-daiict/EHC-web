@@ -72,6 +72,7 @@
     transition: all .3s ease-in-out;
 	border-bottom-left-radius:5px;
 	border-top-left-radius:5px;
+
 	
 	font-size: 14px;
 	color: #111;
@@ -89,6 +90,7 @@
 #eventPeriod ul li div.clickShow {
 	background-image:url(../img/egg_shell.png);
 	background-repeat:repeat;
+	margin:0 0 0 10%;
 }
 
 #eventPeriod ul li.dropdown.clickBullet span.bullet {

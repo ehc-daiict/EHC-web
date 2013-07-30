@@ -23,7 +23,6 @@ $(document).ready(function(){
 	init(year, month);	
 
 	$('#eventPeriod ul li h2').click(function(e) {
-		
 		$('.simpleShow').toggleClass('simpleShow');
         $(this).parent().find('div').toggleClass('simpleShow');
 		$('#eventPeriod ul li div.clickShow').toggleClass('clickShow');
@@ -48,7 +47,6 @@ $(document).ready(function(){
 	$('#eventPeriod ul li div').click(function(e) {
 		$('#eventPeriod ul li div.clickShow').toggleClass('clickShow');
         $(this).toggleClass('clickShow');
-		
 		var yearSpec = $(this).siblings('h2').find('span.year').text();
 		var monthSpec = $(this).html();
 		addNewState(yearSpec, monthSpec, null);
@@ -121,7 +119,7 @@ function loadData(year, month, articleId){
 	var yearsLength = yearElements.length;
 	for(var i =0; i < yearsLength ; i++) {
 		if($(yearElements[i]).html() == year){
-			$(yearElements[i]).parents().eq(1).toggleClass('clickBullet');
+			$(yearElements[i]).parents().eq(1).addClass('clickBullet');
 			$('.simpleShow').toggleClass('simpleShow');
 			$(yearElements[i]).parents().eq(1).find('div').addClass('simpleShow'); //getting to parent li
 			$('.clickShow').toggleClass('clickShow');
@@ -129,7 +127,6 @@ function loadData(year, month, articleId){
 			break;
 		}
 	}
-	
 	loadEvents(year, month);	
 }
 
@@ -138,7 +135,7 @@ function makeYear(year){
 	var li = "<li class='dropdown'> \
 				<h2><span class='bullet'></span><span class='year'>" + year + "</span></h2> \
 				<div>January</div>\
-				<div>Februaury</div>\
+				<div>February</div>\
 				<div>March</div>\
 				<div>April</div>\
 				<div>May</div>\
@@ -200,12 +197,12 @@ function makeEvent(id, title, time, duration, venue, host, audience, registratio
 function putEvents(events){
 	$('#contentWrapper #events').empty();
 	for(i = 0; i < events.length ; i++){
-		eventArticle = makeEvent(events[i].index, events[i].title, events[i].time, events[i].duration, events[i].venue, events[i].host, events[i].audience, events[i].registration, events[i].regLink, events[i].prerequisite, events[i].tools, events[i].desc );
+		eventArticle = makeEvent(events[i].eventId, events[i].eventTitle, events[i].timeStamp, events[i].duration, events[i].venue, events[i].host, events[i].targetAudience, events[i].registration, events[i].registrationLink, events[i].prerequisite, events[i].toolsNeeded, events[i].description );
 		$('#contentWrapper #events').append(eventArticle);
 	}
 	
 	//this must be added here so that scrolling must occur after completion of the loading process
-	alert(getHash('articleID'));
+	//alert(getHash('articleID'));
 	if(getHash('articleID') != null){
 		$('html, body').animate({
         	scrollTop: $('#'+getHash('articleID')).offset().top
@@ -214,7 +211,7 @@ function putEvents(events){
 }
 
 function loadEvents(year, month){
-	$.post("php/api.php", {method : 'fetchEvents', year : year , month : month},function(retData){
+	$.post("php/api.php", {method : 'fetchEvents', year : year , month : month + 1},function(retData){
 		//alert(retData.head.status + retData.body.username);
 		if(retData.head.status == 200){//accepted
 			putEvents(retData.body);

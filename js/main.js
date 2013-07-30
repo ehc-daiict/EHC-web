@@ -37,7 +37,7 @@ function sendLoginRqst(){
 		if(retData.head.status == 202){//accepted
 			setCookie('username',retData.body.username);
 			setCookie('fullname',retData.body.fullname);
-			
+
 			loginInterfaceToLogout();
 			
 		}else if(retData.head.status == 401){//unauthorized

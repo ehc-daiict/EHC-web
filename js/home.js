@@ -11,8 +11,8 @@ $(document).ready(function(){
 	fetchComingEvents(year, month);
 });
 
-function makeBlog(title, date, author, post){
-	var blog = "<article class='blogPost'>\
+function makeBlog(id, title, date, author, post){
+	var blog = "<article class='blogPost' id='" + id +"'>\
                       <header>\
                         	<h1>" + title + "</h1>\
                             <hr>\
@@ -32,7 +32,7 @@ function makeBlog(title, date, author, post){
 function putRecentBlogs(blogs){
 	$('#contentWrapper #recentBlog').empty();
 	for(i = 0; i < blogs.length ; i++){
-		blogArticle = makeBlog(blogs[i].title, blogs[i].date, blogs[i].author, blogs[i].post);
+		blogArticle = makeBlog(blogs[i].articleId, blogs[i].title, blogs[i].timeStamp, blogs[i].author, blogs[i].data);
 		$('#contentWrapper #recentBlog').append(blogArticle);
 	}
 }
@@ -40,7 +40,7 @@ function putRecentBlogs(blogs){
 function fetchRecentBlogs(year, month){
 	
 	
-	$.post("php/api.php", {method : 'fetchRecentBlogs', year : year , month : month},function(retData){
+	$.post("php/api.php", {method : 'fetchRecentBlogs', year : year , month : month + 1},function(retData){
 		//alert(retData.head.status + retData.body.username);
 		if(retData.head.status == 200){//accepted
 			putRecentBlogs(retData.body);
@@ -53,7 +53,7 @@ function fetchRecentBlogs(year, month){
 }
 function makeComingEvent(id, title, time, venue, desc, year, month){
 	var comingEventArticle = "<li class='dropdown'>\
-								<h2><a href='/ehcwebsite/events.html#year=" + year + "&month=" + monthName[month] + "&articleID=" + id + "'>" + title + "</a><span class='bullet'></span></h2>\
+								<h2><a href='/ehcwebsite/events.html#year=" + year + "&month=" + monthName[month - 1] + "&articleID=" + id + "'>" + title + "</a><span class='bullet'></span></h2>\
 								<div class='eventBody'>\
 									<div class='clear'>\
 										<div class='label'>Time</div><div class='colon'>-</div><div class='field'>" + time + "</div>\
@@ -79,13 +79,13 @@ function putComingEvents(comingEvents){
 	$('#contentWrapper #comingEvents ul').empty();
 	makeComingEventsHeading();
 	for(i = 0; i < comingEvents.length ; i++){
-		comingEventArticle = makeComingEvent(comingEvents[i].index, comingEvents[i].title, comingEvents[i].time, comingEvents[i].venue, comingEvents[i].desc, comingEvents[i].year, comingEvents[i].month);
+		comingEventArticle = makeComingEvent(comingEvents[i].eventId, comingEvents[i].eventTitle, comingEvents[i].timeStamp, comingEvents[i].venue, comingEvents[i].shortDescription, comingEvents[i].year, comingEvents[i].month);
 		$('#contentWrapper #comingEvents ul').append(comingEventArticle);
 	}
 
 }
 function fetchComingEvents(year, month){
-	$.post("php/api.php", {method : 'fetchComingEvents', year : year , month : month},function(retData){
+	$.post("php/api.php", {method : 'fetchComingEvents', year : year , month : month + 1},function(retData){
 		//alert(retData.head.status + retData.body.username);
 		if(retData.head.status == 200){//accepted
 			putComingEvents(retData.body);
