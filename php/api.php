@@ -36,7 +36,7 @@ if (isset($_POST["method"])){
 			$result["head"]["message"] = getStatusCodeMessage( $result["head"]["status"] );
 			break;
 		case "fetchRecentBlogs":
-			require_once 'blog.php';
+			require_once 'blog.php'; 
 			$result = fetchRecentBlogs();
 			$result["head"]["message"] = getStatusCodeMessage( $result["head"]["status"] );
 			break;

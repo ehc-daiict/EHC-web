@@ -105,17 +105,26 @@ function fetchRecentBlogs(){
 	$head = array("status" => "", "message" => "" );
 	$body = array();
 
-	if(isset($_POST['year']) && isset($_POST['month']) ) {
+	if(isset($_POST['year']) && isset($_POST['month']) && !empty($year)) {
         $year = $_POST['year'];
         $month = $_POST['month'];
-        if (!empty($year) ) {//no need to check empty on month
-        	if($month < 12){
-	            $result = getRecentBlogsFromDb($year, $month);
-	            return $result;
-	        }//else badRequest
-        } //else badRequest
-    }//else badRequest
+    } elseif(isset($_POST['year'])){
+        if (!empty($_POST['year'])) {
+            $year = $year = $_POST['year'];
+        } else{
+            $year = date('Y');
+        }
+        $month = date('m');
+    } else {
+        $year = date('Y');
+        $month = date('m');
+    }
 
+    if($month < 12){
+        $result = getRecentBlogsFromDb($year, $month);
+        return $result;                
+    }//else badRequest
+    
     $head["status"] = 400;
     $result["head"] = $head;
     $result["body"] = $body;

@@ -29,6 +29,7 @@ function makeBlog(id, title, date, author, post){
                  </article>";
 	return blog;
 }
+
 function putRecentBlogs(blogs){
 	$('#contentWrapper #recentBlog').empty();
 	for(i = 0; i < blogs.length ; i++){
