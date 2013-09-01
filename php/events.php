@@ -68,7 +68,7 @@ function getComingEventsFromDb($year, $month){
     $head = array("status" => "", "message" => "" );
     $body = array();
     $event = array("eventId" => "", "eventTitle" => "", "time" => "", "venue" => "", "desc" => "" , "year" => "", "month" => "");
-    $query = "SELECT Events.eventId,eventTitle,timeStamp,venue,shortDescription,YEAR(timeStamp) as Year, MONTH(timeStamp) as Month FROM `events` WHERE YEAR(`timeStamp`) >= '".mysql_real_escape_string($year)."'AND MONTH(`timeStamp`) >= '".mysql_real_escape_string($month)."'";
+    $query = "SELECT events.eventId,eventTitle,timeStamp,venue,shortDescription,YEAR(timeStamp) as Year, MONTH(timeStamp) as Month FROM `events` WHERE YEAR(`timeStamp`) >= '".mysql_real_escape_string($year)."'AND MONTH(`timeStamp`) >= '".mysql_real_escape_string($month)."'";
     if($query_run = mysql_query($query)) {
         $query_num_rows = mysql_num_rows($query_run);
         if($query_num_rows == 0) {
@@ -103,7 +103,6 @@ function fetchComingEvents(){
     $result = array("head" => array(), "body" => array() );
     $head = array("status" => "", "message" => "" );
     $body = array();
-
     if(isset($_POST['year']) && isset($_POST['month']) ) {
         $year = $_POST['year'];
         $month = $_POST['month'];
